@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import br.com.zitrus.controller.AutorizacaoProcedimentoController;
-import br.com.zitrus.controller.ClienteController;
+import br.com.zitrus.service.ClienteService;
 import br.com.zitrus.controller.ProcedimentoController;
 import br.com.zitrus.entity.AutorizacaoProcedimento;
 import br.com.zitrus.entity.Cliente;
@@ -26,18 +26,18 @@ public class AutorizarProcedimentoServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ClienteController clienteController = new ClienteController();
+		ClienteService clienteService = new ClienteService();
 		ProcedimentoController procedimentoController = new ProcedimentoController();
 		AutorizacaoProcedimentoController autorizacaoProcedimentoController = new AutorizacaoProcedimentoController();
 
 		String operacao = request.getParameter("op");
 
 		if (operacao != null && operacao.equalsIgnoreCase("cliente")) {
-			listarClientes(request, response, clienteController);
+			listarClientes(request, response, clienteService);
 		}
 
 		if (operacao != null && operacao.equalsIgnoreCase("selectCliente")) {
-			buscarCliente(request, response, clienteController);
+			buscarCliente(request, response, clienteService);
 		}
 
 		if (operacao != null && operacao.equalsIgnoreCase("procedimento")) {
@@ -54,10 +54,10 @@ public class AutorizarProcedimentoServlet extends HttpServlet {
 			AutorizacaoProcedimentoController autorizacaoProcedimentoController) throws IOException {
 		Integer idCliente = Integer.valueOf(request.getParameter("idCliente"));
 		Integer idProcedimento = Integer.valueOf(request.getParameter("idProcedimento"));
-		ClienteController clienteController = new ClienteController();
+		ClienteService clienteService = new ClienteService();
 		ProcedimentoController procedimentoController = new ProcedimentoController();
 
-		Cliente cliente = clienteController.buscarClientePorId(idCliente);
+		Cliente cliente = clienteService.buscarClientePorId(idCliente);
 		Procedimento procedimento = procedimentoController.buscarProcedimentoPorId(idProcedimento);
 		AutorizacaoProcedimento autorizacaoProcedimento;
 		Boolean isValido = ValidaProcedimentoUtil.validateAutorizacao(cliente, procedimento);
@@ -84,9 +84,9 @@ public class AutorizarProcedimentoServlet extends HttpServlet {
 	}
 
 	private void buscarCliente(HttpServletRequest request, HttpServletResponse response,
-			ClienteController clienteController) throws IOException {
+			ClienteService clienteService) throws IOException {
 		String param = request.getParameter("param");
-		Cliente cliente = clienteController.buscarClientePorId(Integer.valueOf(param));
+		Cliente cliente = clienteService.buscarClientePorId(Integer.valueOf(param));
 		String json = new Gson().toJson(cliente);
 
 		response.setContentType("application/json");
@@ -95,9 +95,9 @@ public class AutorizarProcedimentoServlet extends HttpServlet {
 	}
 
 	private void listarClientes(HttpServletRequest request, HttpServletResponse response,
-			ClienteController clienteController) throws IOException {
+			ClienteService clienteService) throws IOException {
 		String param = request.getParameter("param");
-		List<Cliente> clientes = clienteController.buscarClientesPorParametro(param);
+		List<Cliente> clientes = clienteService.buscarClientesPorParametro(param);
 		String json = new Gson().toJson(clientes);
 
 		response.setContentType("application/json");

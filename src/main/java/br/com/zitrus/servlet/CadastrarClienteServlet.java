@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.zitrus.controller.ClienteController;
+import br.com.zitrus.service.ClienteService;
 import br.com.zitrus.entity.Cliente;
 import br.com.zitrus.entity.enums.Sexo;
 
@@ -19,11 +19,11 @@ import br.com.zitrus.entity.enums.Sexo;
 public class CadastrarClienteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private ClienteController clienteController;
+	private ClienteService clienteService;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		clienteController = new ClienteController();
-		clienteController.cadastrarCliente(convertAndBuild(request));
+		clienteService = new ClienteService();
+		clienteService.cadastrarCliente(convertAndBuild(request));
 		
 		response.sendRedirect("listarClientes");
 	}

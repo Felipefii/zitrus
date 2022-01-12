@@ -1,4 +1,4 @@
-package br.com.zitrus.controller;
+package br.com.zitrus.service;
 
 import java.util.List;
 
@@ -6,11 +6,11 @@ import br.com.zitrus.dao.ClienteDao;
 import br.com.zitrus.entity.Cliente;
 import br.com.zitrus.util.JPAUtil;
 
-public class ClienteController {
+public class ClienteService {
 	
 	private ClienteDao clienteDao;
 	
-	public ClienteController() {
+	public ClienteService() {
 		this.clienteDao = new ClienteDao(JPAUtil.getEntityManager());
 	}
 	
