@@ -6,6 +6,7 @@
 * Após cadastrados, clientes e procedimentos, o usuário poderá autorizar procedimentos para os clientes
 
 ## Execução da aplicação
+* Para facilitar a execução da aplicação, o app encontra-se no docker hub
 * Para executar a aplicação, basta executar em terminal o comando: 
 docker run -it --rm -p 8080:8080 felipefii273/zitrus-test:0.0.1
 
