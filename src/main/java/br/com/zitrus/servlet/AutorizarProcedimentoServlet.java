@@ -1,7 +1,6 @@
 package br.com.zitrus.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -61,7 +60,7 @@ public class AutorizarProcedimentoServlet extends HttpServlet {
 		Cliente cliente = clienteController.buscarClientePorId(idCliente);
 		Procedimento procedimento = procedimentoController.buscarProcedimentoPorId(idProcedimento);
 		AutorizacaoProcedimento autorizacaoProcedimento;
-		Boolean isValido = ValidaProcedimentoUtil.validateAutorização(cliente, procedimento);
+		Boolean isValido = ValidaProcedimentoUtil.validateAutorizacao(cliente, procedimento);
 
 		if (isValido) {
 			autorizacaoProcedimento = new AutorizacaoProcedimento();

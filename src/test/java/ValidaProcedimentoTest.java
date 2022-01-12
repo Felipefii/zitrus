@@ -13,19 +13,19 @@ class ValidaProcedimentoTest {
 	
 	@Test
 	void shouldReturnTrueWhenIsPermitido() {
-		Boolean validar = ValidaProcedimentoUtil.validateAutorização(getCliente(), getProcedimentoPermitido());
+		Boolean validar = ValidaProcedimentoUtil.validateAutorizacao(getCliente(), getProcedimentoPermitido());
 		assertEquals(validar, Boolean.TRUE);
 	}
 	
 	@Test
 	void shouldReturnFalseWhenIsNotPermitido() {
-		Boolean validar = ValidaProcedimentoUtil.validateAutorização(getCliente(), getProcedimentoNaoPermitido());
+		Boolean validar = ValidaProcedimentoUtil.validateAutorizacao(getCliente(), getProcedimentoNaoPermitido());
 		assertEquals(validar, Boolean.FALSE);
 	}
 	
 	@Test
 	void shouldReturnFalseWhenSexoNotPermitido() {
-		Boolean validar = ValidaProcedimentoUtil.validateAutorização(getCliente(), getProcedimentoSexoNaoPermitido());
+		Boolean validar = ValidaProcedimentoUtil.validateAutorizacao(getCliente(), getProcedimentoSexoNaoPermitido());
 		assertEquals(validar, Boolean.FALSE);
 	}
 

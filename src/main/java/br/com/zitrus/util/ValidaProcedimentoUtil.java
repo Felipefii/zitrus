@@ -10,7 +10,7 @@ import br.com.zitrus.entity.Procedimento;
 
 public class ValidaProcedimentoUtil {
 	
-	public static Boolean validateAutorização(Cliente cliente, Procedimento procedimento) {
+	public static Boolean validateAutorizacao(Cliente cliente, Procedimento procedimento) {
 	
 		if (cliente.getSexo() == procedimento.getSexoPermito() &&
 				anosIdade(cliente.getNascimento()) >= procedimento.getIdadeMinima() && 		
